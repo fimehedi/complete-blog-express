@@ -1,0 +1,35 @@
+<%- include ('../../partials/header.ejs') %>
+
+<div class="container my-container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card card-body signup-wrapper py-4">
+                <h4 class="text-center pb-1 mb-2 text-info signup-title">Login To Your Account</h4>
+                <form action="/user/login" method="POST">
+                    <div class="form-group pt-2">
+                        <label for="userOrEmail">Enter your username or email</label>
+                        <input class="form-control <%=  error.user && 'is-invalid' %>" type="text" name="userOrEmail"
+                            id="userOrEmail" value="<%= userOrEmail && userOrEmail %>" placeholder="User">
+                        <div class="invalid-feedback">
+                            <%= error.user %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Enter your password</label>
+                        <input class="form-control <%= error.pass && 'is-invalid' %>" type="password" name="password"
+                            id="password" placeholder="Password">
+                        <div class="invalid-feedback">
+                            <%= error.pass %>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <input class="btn btn-primary px-5" type="submit" value="Login">
+                    </div>
+                </form>
+                <a href="/user/signup" class="text-center mt-3">Don't have an account? Signup Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>

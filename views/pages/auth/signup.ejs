@@ -1,0 +1,51 @@
+<%- include ('../../partials/header.ejs') %>
+
+<div class="container my-container my-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card card-body signup-wrapper py-4">
+                <h4 class="text-center pb-1 mb-2 text-info signup-title">Create A New Account</h4>
+                <form action="/user/signup" method="POST">
+                    <div class="form-group pt-2">
+                        <label for="username">Choose a username</label>
+                        <input class="form-control <%= error.username? 'is-invalid' : '' %> " type="text"
+                            name="username" id="username" value="<%= value.username && value.username %>">
+                        <div class="invalid-feedback">
+                            <%= error.username %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Enter a valid email</label>
+                        <input class="form-control <%= error.email? 'is-invalid' : '' %> " type="email" name="email"
+                            id="email" value="<%= value.email && value.email %>">
+                        <div class="invalid-feedback">
+                            <%= error.email %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Choose a strong password</label>
+                        <input class="form-control <%= error.password? 'is-invalid' : '' %>" type="password"
+                            name="password" id="password" value="<%= value.password && value.password %>">
+                        <div class="invalid-feedback">
+                            <%= error.password %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm your password</label>
+                        <input class="form-control <%= error.confirmPassword? 'is-invalid' : '' %>" type="password"
+                            name="confirmPassword" id="confirm-password">
+                        <div class="invalid-feedback">
+                            <%= error.confirmPassword %>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        <input class="btn btn-primary px-5" type="submit" value="sign up">
+                    </div>
+                </form>
+                <a href="/user/login" class="text-center mt-3">Have an account? login here</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>

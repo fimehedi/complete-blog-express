@@ -1,0 +1,61 @@
+<%- include ('../../../partials/header.ejs') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!--  -->
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="card card-body m-4">
+                    <h4 class="text-center text-info my-2"><%= title %> </h4>
+                    <form action="/post/create" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Enter your post title</label>
+                            <input type="text" name="title" id="title" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tiny-mce-post-body">Enter your post body</label>
+                            <textarea class="form-control" name="body" id="tiny-mce-post-body" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tags">Enter your post tags(Max 10)</label>
+                            <input type="text" name="" id="tags" class="form-control" placeholder="tag1, tag2, tag3"
+                                aria-describedby="helpId">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="post-thumbnail" id="post-thumbnail">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="btn btn-outline-success btn-block my-4" type="submit" value="Create Post">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../../partials/footer.ejs') %>
+
+<!-- Tiny Mce -->
+<script src="https://cdn.tiny.cloud/1/9eauq11uceq8m3u8tgn63u8gl87dnxgtgn0epj5kgy45yje1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="/scripts/tiny-mce.js"></script>
+<script>
+    $('#post-thumbnail').change(function (e) {
+        let filename = e.target.files[0].name
+
+        $(this).next('.custom-file-label').html(filename)
+    })
+</script>

@@ -1,0 +1,4 @@
+{
+    "db-url" : "DB_URL",
+    "secret" : "SECRET_KEY"
+}
