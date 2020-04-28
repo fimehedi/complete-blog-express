@@ -2,19 +2,30 @@ const { validationResult } = require('express-validator')
 
 const User = require('../models/User')
 const Profile = require('../models/Profile')
+const Comments = require('../models/Comment')
 const Flash = require('../utils/Flash')
 const errorFormatter = require('../utils/validatorErrorFormatter')
 
 exports.dashboardGetController = async (req, res, next) => {
     try {
         let profile = await Profile.findOne({ user: req.user._id })
+            .populate({
+                path: 'posts',
+                select: 'title thumbnail'
+            })
+            .populate({
+                path: 'bookmarks',
+                select: 'title thumbnail'
+            })
 
         if (profile) {
             return res.render('pages/dashboard/dashboard',
                 {
-                    title: "Dashboard",
+                    title: "My Dashboard",
                     path: 'dashboard',
-                    flashMessage: Flash.getMessage(req)
+                    flashMessage: Flash.getMessage(req),
+                    posts: profile.posts,
+                    bookmarks: profile.bookmarks
                 })
         }
 
@@ -108,7 +119,7 @@ exports.editProfileGetController = async (req, res, next) => {
         res.redirect('/dashboard/create-profile')
 
     } catch (error) {
-
+        next(error)
     }
 }
 
@@ -157,5 +168,53 @@ exports.editProfilePostController = async (req, res, next) => {
     } catch (e) {
         next(e)
     }
+}
 
+exports.bookmarksGetController = async (req, res, next) => {
+    try {
+        let profile = await Profile.findOne({ user: req.user._id })
+            .populate({
+                path: 'bookmarks',
+                model: 'Post',
+                select: 'title thumbnail'
+            })
+        // return res.json(profile)
+
+        res.render('pages/dashboard/bookmarks', {
+            title: "My Bookmarks",
+            flashMessage: Flash.getMessage(req),
+            path: '',
+            posts: profile.bookmarks
+        })
+    } catch (error) {
+        next(e)
+    }
+}
+
+exports.commentsGetController = async (req, res, next) => {
+    try {
+        let profile = await Profile.findOne({ user: req.user._id })
+        let comments = await Comments.find({ post: { $in: profile.posts } })
+            .populate({
+                path: 'post',
+                select: 'title'
+            })
+            .populate({
+                path: 'user',
+                select: 'username profilePic'
+            })
+            .populate({
+                path: 'replies.user',
+                select: 'username profilePic'
+            })
+
+        res.render('pages/dashboard/comments', {
+            title: 'My Recent Comments',
+            path: '',
+            flashMessage: Flash.getMessage(req),
+            comments
+        })
+    } catch (error) {
+        next(error)
+    }
 }

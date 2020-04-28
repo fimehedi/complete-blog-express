@@ -1,0 +1,57 @@
+<%- include ('../../partials/header.ejs') %>
+
+<div class="container my-container my-2">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <h5>Search Result For - <%= searchTerm %> </h5>
+
+            <% if (posts.length === 0) { %>
+            <p class="text-muted text-center mt-5">Nothing Found</p>
+            <% } else { %>
+            <% for( let post of posts ) { %>
+            <div class="card card-body mt-2">
+                <a href="/explorer/<%= post._id %>" style="color: #222222;">
+                    <h5><%= post.title %> </h5>
+                    <p><%= truncate(post.body) %> </p>
+                </a>
+            </div>
+            <% } %>
+            <% } %>
+
+            <% if (totalPage > 1) { %>
+            <nav class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+                        <a href="<%= `/search?term=${searchTerm}&page=${currentPage - 1}` %>" class="page-link">
+                            Prev
+                        </a>
+                    </li>
+
+                    <% for( let i = 1; i <= totalPage; i++ ) { %>
+                    <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                        <a href="<%= `/search?term=${searchTerm}&page=${i}` %>" class="page-link">
+                            <%= i %>
+                        </a>
+                    </li>
+                    <% } %>
+
+                    <li class="page-item <%= currentPage === totalPage ? 'disabled' : '' %>">
+                        <a href="<%= `/search?term=${searchTerm}&page=${currentPage + 1}` %>" class="page-link">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>
+
+<script src="/scripts/bookmarks.js"></script>
+
+</body>
+
+</html>

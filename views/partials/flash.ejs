@@ -1,25 +1,21 @@
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-
-        <% if (flashMessage.success) { %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <strong>Success!</strong> <%= flashMessage.success %>.
-        </div>
-        <% } %>
-
-        <% if (flashMessage.error) { %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <strong>Error!</strong> <%= flashMessage.error %>.
-        </div>
-        <% } %>
-
+<div class="w-50 m-auto pt-2">
+    <% if (flashMessage.success) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>Success!</strong> <%= flashMessage.success %>.
     </div>
+    <% } %>
+
+    <% if (flashMessage.error) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>Error!</strong> <%= flashMessage.error %>.
+    </div>
+    <% } %>
 </div>

@@ -129,3 +129,38 @@ exports.logoutController = (req, res, next) => {
 
     })
 }
+
+exports.changePasswordGetController = (req, res, next) => {
+    res.render('pages/auth/changePassword', {
+        title: 'Change Password',
+        path: '',
+        flashMessage: Flash.getMessage(req)
+    })
+}
+
+exports.changePasswordPostController = async (req, res, next) => {
+
+    let { currentPassword, newPassword, confirmPassword } = req.body
+
+    if (newPassword != confirmPassword) {
+        req.flash('error', 'New Password Dose Not Match')
+        return res.redirect('/user/change-password')
+    }
+
+    let correctPassword = await bcrypt.compare(currentPassword, req.user.password)
+
+    if (!correctPassword) {
+        req.flash('error', 'Invalid Old Password')
+        return res.redirect('/user/change-password')
+    }
+
+    let hash = await bcrypt.hash(newPassword, 12)
+    await User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: { password: hash } }
+    )
+
+    req.flash('success', 'Password Updated Successfully')
+    res.redirect('/user/change-password')
+}
+

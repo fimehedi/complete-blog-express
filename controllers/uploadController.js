@@ -48,20 +48,22 @@ exports.removeProfilePic = (req, res, next) => {
         let defaultProfile = '/uploads/profile.png'
         let currentProfile = req.user.profilePic
 
-        fs.unlink(`public${currentProfile}`, async () => {
-            let profile = await Profile.findOne({ user: req.user._id })
-            if (profile) {
-                await Profile.findOneAndUpdate(
-                    { user: req.user._id },
+        if (currentProfile != defaultProfile) {
+            fs.unlink(`public${currentProfile}`, async () => {
+                let profile = await Profile.findOne({ user: req.user._id })
+                if (profile) {
+                    await Profile.findOneAndUpdate(
+                        { user: req.user._id },
+                        { $set: { profilePic: defaultProfile } }
+                    )
+                }
+
+                await User.findOneAndUpdate(
+                    { _id: req.user._id },
                     { $set: { profilePic: defaultProfile } }
                 )
-            }
-
-            await User.findOneAndUpdate(
-                { _id: req.user._id },
-                { $set: { profilePic: defaultProfile } }
-            )
-        })
+            })
+        }
         res.status(200).json({
             profilePic: defaultProfile
         })

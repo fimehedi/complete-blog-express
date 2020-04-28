@@ -1,0 +1,28 @@
+<div id="sidebar" class="my-4 sticky-top">
+    <div class="list-group">
+        <a href="/dashboard" class="list-group-item list-group-item-action <%= path === 'dashboard' && 'active' %>">
+            Dashboard
+        </a>
+        <a href="/post/create" class="list-group-item list-group-item-action <%= path === 'create' && 'active' %>">
+            New Post
+        </a>
+        <a href="/post" class="list-group-item list-group-item-action <%= path === 'post' && 'active' %>">
+            All Post
+        </a>
+        <a href="/dashboard/bookmarks" class="list-group-item list-group-item-action <%= path === 'bookmarks' && 'active' %>">
+            Bookmarks
+        </a>
+        <a href="/dashboard/comments" class="list-group-item list-group-item-action <%= path === 'comments' && 'active' %>">
+            Comments
+        </a>
+        <a href="/dashboard/edit-profile" class="list-group-item list-group-item-action <%= path === 'edit-profile' && 'active' %>">
+            Edit Profile
+        </a>
+        <a href="/user/change-password" class="list-group-item list-group-item-action <%= path === 'change-password' && 'active' %>">
+            Change Password
+        </a>
+        <a href="/user/logout" class="list-group-item list-group-item-action">
+            Logout
+        </a>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<%- include ('../../partials/header.ejs') %>
+
+<div class="container my-container my-2">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <div class="d-flex">
+                <div>
+                    <img src="<%= author.profilePic %> " class="img-thumbnail img-fluid" alt="">
+                </div>
+
+                <div class="p-3">
+                    <p>Name: <strong><%= author.profile.name %> </strong></p>
+                    <p>Title: <strong><%= author.profile.title %> </strong></p>
+                    <p>Bio: <strong><%= author.profile.bio %> </strong></p>
+                    <p>Email: <strong><%= author.email %> </strong></p>
+                </div>
+            </div>
+
+            <div class="user-social">
+                <% if (author.profile.links.website) { %>
+                <span>
+                    <a href="https://www.<%= author.profile.links.website %>" target="_blank">
+                        <i class="fab fa-internet-explorer"></i>
+                    </a>
+                </span>
+                <% } %>
+
+                <% if (author.profile.links.facebook) { %>
+                <span>
+                    <a href="https://www.<%= author.profile.links.facebook %>" target="_blank">
+                        <i class="fab fa-facebook-square"></i>
+                    </a>
+                </span>
+                <% } %>
+
+                <% if (author.profile.links.twitter) { %>
+                <span>
+                    <a href="https://www.<%= author.profile.links.twitter %>" target="_blank">
+                        <i class="fab fa-twitter-square"></i>
+                    </a>
+                </span>
+                <% } %>
+
+                <% if (author.profile.links.github) { %>
+                <span>
+                    <a href="https://www.<%= author.profile.links.github %>" target="_blank">
+                        <i class="fab fa-github-square"></i>
+                    </a>
+                </span>
+                <% } %>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>
+
+</body>
+
+</html>

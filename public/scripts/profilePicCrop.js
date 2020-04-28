@@ -60,7 +60,7 @@ window.onload = function () {
             })
             .then(res => res.json())
             .then(data => {
-                document.getElementById('remove-profile-pic').style.display = "block"
+                document.getElementById('remove-pic-act').style.display = "contents"
                 document.getElementById('profile-pic').src = data.profilePic
                 document.getElementById('profile-pic-form').reset()
 
@@ -80,7 +80,7 @@ window.onload = function () {
         fetch(req)
             .then(res => res.json())
             .then(data => {
-                document.getElementById('remove-profile-pic').style.display = "none"
+                document.getElementById('remove-pic-act').style.display = "none"
                 document.getElementById('profile-pic').src = data.profilePic
                 document.getElementById('profile-pic-form').reset()
             })

@@ -1,7 +1,67 @@
 <%- include ('../../partials/header.ejs') %>
 
-<div class="container my-container">
-    <h1 class="text-center display-2">Welcome to your Dashboard</h1>
+<div class="container-fluid my-container">
+    <div class="row">
+        <div class="col-md-2">
+            <%- include ('../../partials/sidebar.ejs') %>
+        </div>
+        <div class="col-md-10">
+            <div class="card card-body my-4 px-5">
+                <h2 class="text-info text-center mb-4"><%= title %></h2>
+                <h4>Recent Posts</h4>
+                <div class="row">
+                    <% if (posts.length === 0) { %>
+                    <div class="text-center text-muted m-auto py-5">
+                        <p>There is no posts available right now</p>
+                    </div>
+                    <% } else { %>
+                    <% for( let post of posts.reverse().slice(0, 3)) { %>
+                    <div class="col-sm-4">
+                        <div class="card mb-3">
+                            <a href="/explorer/<%= post._id %>">
+                                <% if (post.thumbnail) { %>
+                                <img src="<%= post.thumbnail %> " class="card-img-top w-100" alt="...">
+                                <% } %>
+                                <div class="card-body">
+                                    <h6 class="card-text" style="color: #222;"><%= post.title %></h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+
+                <h4 class="mt-4">Recent Bookmarks</h4>
+                <div class="row">
+                    <% if (bookmarks.length === 0) { %>
+                    <div class="text-center text-muted m-auto py-5">
+                        <p>There is no bookmarks available right now</p>
+                    </div>
+                    <% } else { %>
+                    <% for( let bookmark of bookmarks.reverse().slice(0, 3)) { %>
+                    <div class="col-sm-4">
+                        <div class="card mb-3">
+                            <a href="/explorer/<%= bookmark._id %>">
+                                <% if (bookmark.thumbnail) { %>
+                                <img src="<%= bookmark.thumbnail %> " class="card-img-top w-100" alt="...">
+                                <% } %>
+                                <div class="card-body">
+                                    <h6 class="card-text" style="color: #222;"><%= bookmark.title %></h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <%- include ('../../partials/footer.ejs') %>
+
+</body>
+
+</html>

@@ -2,8 +2,13 @@ const authRoute = require('./authRouter')
 const dashboardRoute = require('./dashboardRouter')
 const postRoute = require('./postRouter')
 const uploadRoute = require('./uploadRouter')
+const explorerRoute = require('./explorerRouter')
+const searchRoute = require('./searchRouter')
+const authorRoute = require('../routes/authorRouter')
 const playgroundRouter = require('../playground/play')
 const Flash = require('../utils/Flash')
+
+const apiRoute = require('../api/routes/apiRouter')
 
 
 const routes = [
@@ -22,6 +27,22 @@ const routes = [
     {
         path: '/upload',
         handler: uploadRoute
+    },
+    {
+        path: '/explorer',
+        handler: explorerRoute
+    },
+    {
+        path: '/search',
+        handler: searchRoute
+    },
+    {
+        path: '/author',
+        handler: authorRoute
+    },
+    {
+        path: '/api',
+        handler: apiRoute
     },
     {
         path: '/playground',

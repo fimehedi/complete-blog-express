@@ -6,12 +6,12 @@ const Post = require('./Post')
 const commentSchema = new Schema({
     post: {
         type: Schema.Types.ObjectId,
-        ref: Post,
+        ref: 'Post',
         required: true
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: User,
+        ref: 'User',
         required: true
     },
     body: {
@@ -28,7 +28,7 @@ const commentSchema = new Schema({
             },
             user: {
                 type: Schema.Types.ObjectId,
-                ref: User,
+                ref: 'User',
                 require: true
             },
             createAt: {

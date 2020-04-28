@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app",
+    "start": "node app",
+    "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "FIMehedi",
@@ -12,6 +13,7 @@
   "dependencies": {
     "bcrypt": "^4.0.1",
     "chalk": "^4.0.0",
+    "cheerio": "^1.0.0-rc.3",
     "config": "^3.3.1",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.3.1",
@@ -20,8 +22,13 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "reading-time": "^1.2.0"
+  },
+  "engines": {
+    "node": "13.10.1"
   }
 }

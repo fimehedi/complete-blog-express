@@ -11,15 +11,24 @@
                     <div class="card card-body my-4">
                         <h4 class="text-center text-info my-2"><%= title %> </h4>
                         <div class="profile-pic-area">
-                            <label for="profile-pic-file">
+                            <div class="profile-img-container">
                                 <img src="<%= user.profilePic %>" alt="Profile" class="img-fluid img-thumbnail"
                                     id="profile-pic" width="200">
-                            </label>
-                            <form action="/upload/profilePic" class="my-2" id="profile-pic-form">
+                                <div>
+                                    <label for="profile-pic-file">
+                                        <i class="fas fa-user-edit fa-2x fa-fw"></i>
+                                    </label>
+                                    <label for="remove-profile-pic" id="remove-pic-act"
+                                        style="display: <%= user.profilePic.includes('profile.png') ? 'none' : 'contents' %>">
+                                        <i class="fas fa-trash fa-2x fa-fw"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <form action="/upload/profilePic" method="post" enctype="multipart/form-data" class="my-2"
+                                id="profile-pic-form">
                                 <input type="file" name="profile-pic" id="profile-pic-file" accept="/image/*" hidden>
                                 <input type="button" value="Remove" class="btn btn-danger btn-small my-2"
-                                    id="remove-profile-pic"
-                                    style="display: <%= user.profilePic.includes('profile.png') ? 'none' : 'block' %>">
+                                    id="remove-profile-pic" hidden>
                             </form>
                         </div>
                         <div>
@@ -74,9 +83,9 @@
                                     </div>
                                     <input type="" class="form-control <%= error.facebook&& 'is-invalid' %>"
                                         name="facebook" placeholder="facebook.com/user">
-                                        <div class="invalid-feedback">
-                                            <%= error.facebook %>
-                                        </div>
+                                    <div class="invalid-feedback">
+                                        <%= error.facebook %>
+                                    </div>
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -84,7 +93,8 @@
                                         <span class="input-group-text">
                                             <i class="fab fa-twitter-square"></i>https://www.</span>
                                     </div>
-                                    <input type="" class="form-control <%= error.twitter && 'is-invalid' %>" name="twitter" placeholder="twitter.com/user">
+                                    <input type="" class="form-control <%= error.twitter && 'is-invalid' %>"
+                                        name="twitter" placeholder="twitter.com/user">
                                     <div class="invalid-feedback">
                                         <%= error.twitter %>
                                     </div>
@@ -95,7 +105,8 @@
                                         <span class="input-group-text">
                                             <i class="fab fa-github-square"></i>https://www.</span>
                                     </div>
-                                    <input type="" class="form-control <%= error.github && 'is-invalid' %>" name="github" placeholder="github.com/user">
+                                    <input type="" class="form-control <%= error.github && 'is-invalid' %>"
+                                        name="github" placeholder="github.com/user">
                                     <div class="invalid-feedback">
                                         <%= error.github %>
                                     </div>
@@ -145,3 +156,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
 <script src="/scripts/profilePicCrop.js"></script>
+
+</body >
+</html >

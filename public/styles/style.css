@@ -10,6 +10,10 @@ input:focus, textarea:focus{
     border: 1px solid #17a2b8 !important;
 }
 
+a:hover{
+    text-decoration: none;
+}
+
 .my-container{
     min-height: 85vh;
 }
@@ -30,13 +34,53 @@ input:focus, textarea:focus{
     font-weight: bold;
 }
 
-#profile-pic {
+.profile-img-container .fas {
+    margin: 20px;
     cursor: pointer;
+    color: white;
 }
 
+/*  */
+
+.profile-img-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.profile-img-container div {
+    display: inline-block;
+    position: relative;
+    left: -180px;
+    top: 80px;
+    opacity: 0;
+    text-align: justify;
+}
+
+.profile-img-container div:hover {
+    opacity: 1;
+}
+
+
+/*  */
 .fab {
     font-size: 24px;
     margin-right: 5px;
+}
+
+.post-body img {
+    max-width: 100%;
+    max-height: auto;
+}
+
+.user-social{
+    width: 200px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.user-social span {
+    padding: 5px;
 }
 
 footer{

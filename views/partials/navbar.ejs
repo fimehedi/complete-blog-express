@@ -12,19 +12,15 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
 
+                <li class="nav-item <%= path === 'e'? 'active' : '' %>">
+                    <a class="nav-link" href="/explorer">Explorer</a>
+                </li>
+
                 <li class="nav-item <%= path === 'dashboard'? 'active' : '' %>">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
 
                 <% if (isLoggedIn) { %>
-
-                <li class="nav-item <%= path === '/login'? 'active' : '' %>">
-                    <a class="nav-link" href="/dashboard/edit-profile">Edit Profile</a>
-                </li>
-
-                <li class="nav-item <%= path === '/login'? 'active' : '' %>">
-                    <a class="nav-link" href="/post/create">Create Post</a>
-                </li>
 
                 <li class="nav-item <%= path === '/login'? 'active' : '' %>">
                     <a class="nav-link" href="/user/logout">Logout</a>
@@ -41,10 +37,9 @@
                 <% } %>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="search-box"
-                    style="display: none;">
-                <button class="btn btn-outline-info my-2 my-sm-0" type="button" id="search-btn">Search</button>
+            <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
+                <input name="term" class="form-control mr-sm-2 w-50 ml-auto" type="search" placeholder="Search" id="search-box">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit" id="search-btn">Search</button>
             </form>
         </div>
     </div>

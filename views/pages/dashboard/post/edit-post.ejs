@@ -9,11 +9,12 @@
             <div class="row">
                 <div class="card card-body m-4">
                     <h4 class="text-center text-info my-2"><%= title %> </h4>
-                    <form action="/post/create" method="POST" enctype="multipart/form-data">
+                    <form action="/post/edit/<%= post._id %>" method="POST">
                         <div class="form-group">
                             <label for="title">Enter your post title</label>
-                            <input type="text" name="title" id="title" class="form-control <%= error.title && 'is-invalid' %>" placeholder="" value="<%= value.title %>"
-                                aria-describedby="helpId">
+                            <input type="text" name="title" id="title"
+                                class="form-control <%= error.title && 'is-invalid' %>" placeholder=""
+                                value="<%= post.title %>" aria-describedby="helpId">
                             <div class="invalid-feedback">
                                 <%= error.title %>
                             </div>
@@ -21,7 +22,8 @@
 
                         <div class="form-group">
                             <label for="tiny-mce-post-body">Enter your post body</label>
-                            <textarea class="form-control <%= error.body && 'is-invalid' %>" name="body" id="tiny-mce-post-body" rows="3"><%- value.body %></textarea>
+                            <textarea class="form-control <%= error.body && 'is-invalid' %>" name="body"
+                                id="tiny-mce-post-body" rows="3"><%- post.body %></textarea>
                             <div class="invalid-feedback">
                                 <%= error.body %>
                             </div>
@@ -29,7 +31,8 @@
 
                         <div class="form-group">
                             <label for="tags">Enter your post tags(Max 10)</label>
-                            <input type="text" name="tags" id="tags" class="form-control" placeholder="tag1, tag2, tag3" value="<%= value.tags %> "
+                            <input type="text" name="tags" id="tags" class="form-control" placeholder="tag1, tag2, tag3"
+                                value="<%= post.tags.length > 0 ? post.tags.join(', ') : '' %>"
                                 aria-describedby="helpId">
                         </div>
 
@@ -39,12 +42,26 @@
                             </div>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="post-thumbnail" id="post-thumbnail">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                <label class="custom-file-label" for="post-thumbnail">Choose file</label>
                             </div>
                         </div>
 
+                        <% if (post.thumbnail) { %>
+                        <div class="d-flex justify-content-center">
+                            <img src="<%= post.thumbnail %> " class="w-75" alt="">
+                        </div>
+                        <% } %>
+
                         <div class="form-group">
-                            <input class="btn btn-outline-success btn-block my-4" type="submit" value="Create Post">
+                            <div class="row my-4">
+                                <div class="col-md-6">
+                                    <a href="/post/delete/<%= post._id %>" class="btn btn-outline-danger btn-block">Delete Post</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="btn btn-success btn-block" type="submit"
+                                        value="Update Post">
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -56,7 +73,8 @@
 <%- include ('../../../partials/footer.ejs') %>
 
 <!-- Tiny Mce -->
-<script src="https://cdn.tiny.cloud/1/9eauq11uceq8m3u8tgn63u8gl87dnxgtgn0epj5kgy45yje1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/9eauq11uceq8m3u8tgn63u8gl87dnxgtgn0epj5kgy45yje1/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
 <script src="/scripts/tiny-mce.js"></script>
 <script>
     $('#post-thumbnail').change(function (e) {
