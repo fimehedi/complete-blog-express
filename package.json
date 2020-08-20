@@ -11,7 +11,7 @@
   "author": "FIMehedi",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "chalk": "^4.0.0",
     "cheerio": "^1.0.0-rc.3",
     "config": "^3.3.1",
